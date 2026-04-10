@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SabhasadModule } from './sabhasad/sabhasad.module';
+import { VarganiModule } from './vargani/vargani.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { SabhasadModule } from './sabhasad/sabhasad.module';
       synchronize: true, // Set to false in production
     }),
     SabhasadModule,
+    VarganiModule,
   ],
   controllers: [AppController],
   providers: [AppService],

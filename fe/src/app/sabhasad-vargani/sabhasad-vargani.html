@@ -1,1 +1,46 @@
-<p>sabhasad-vargani works!</p>
+<h2>Sabhasad Vargani</h2>
+
+<form [formGroup]="sabhasadVarganiForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="sabhasadId">Sabhasad Name:*</label>
+    <select id="sabhasadId" formControlName="sabhasadId" required>
+      <option value="" disabled>Select Sabhasad</option>
+      <option *ngFor="let option of sabhasadOptions" [value]="option.id">{{ option.name }}</option>
+    </select>
+    <div *ngIf="sabhasadVarganiForm.get('sabhasadId')?.invalid && sabhasadVarganiForm.get('sabhasadId')?.touched">
+      Please select a Sabhasad.
+    </div>
+  </div>
+
+  <div>
+    <label for="tranDate">Tran Date:*</label>
+    <input type="date" id="tranDate" formControlName="tranDate" required />
+    <div *ngIf="sabhasadVarganiForm.get('tranDate')?.invalid && sabhasadVarganiForm.get('tranDate')?.touched">
+      Tran Date is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="tranNo">Tran No:*</label>
+    <select id="tranNo" formControlName="tranNo" required>
+      <option value="" disabled>Select Tran No</option>
+      <option *ngFor="let no of tranNoOptions" [value]="no">{{ no }}</option>
+    </select>
+    <div *ngIf="sabhasadVarganiForm.get('tranNo')?.invalid && sabhasadVarganiForm.get('tranNo')?.touched">
+      Tran No is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="varganiType">Vargani Type:*</label>
+    <select id="varganiType" formControlName="varganiType" required>
+      <option value="" disabled>Select Type</option>
+      <option *ngFor="let type of varganiTypes" [value]="type">{{ type }}</option>
+    </select>
+    <div *ngIf="sabhasadVarganiForm.get('varganiType')?.invalid && sabhasadVarganiForm.get('varganiType')?.touched">
+      Vargani Type is required.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="sabhasadVarganiForm.invalid">Submit</button>
+</form>
