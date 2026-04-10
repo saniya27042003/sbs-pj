@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../api.service';
+import { TranslatePipe } from '../translate.pipe';
 
 @Component({
   selector: 'app-sabhasad-master',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, TranslatePipe],
   templateUrl: './sabhasad-master.html',
   styleUrl: './sabhasad-master.css',
 })

@@ -1,82 +1,78 @@
-<h2>Sabhasad Vargani</h2>
-
-<form [formGroup]="sabhasadVarganiForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="sabhasadId">Sabhasad Name:*</label>
-    <select id="sabhasadId" formControlName="sabhasadId" required>
-      <option value="" disabled>Select Sabhasad</option>
-      <option *ngFor="let option of sabhasadOptions" [value]="option.id">{{ option.name }}</option>
-    </select>
-    <div *ngIf="sabhasadVarganiForm.get('sabhasadId')?.invalid && sabhasadVarganiForm.get('sabhasadId')?.touched">
-      Please select a Sabhasad.
-    </div>
+<div class="card page-card shadow-sm">
+  <div class="card-header">
+    <h2 class="mb-0">{{ 'sabhasadVargani.title' | translate }}</h2>
   </div>
-
-  <div>
-    <label for="tranDate">Tran Date:*</label>
-    <input type="date" id="tranDate" formControlName="tranDate" required />
-    <div *ngIf="sabhasadVarganiForm.get('tranDate')?.invalid && sabhasadVarganiForm.get('tranDate')?.touched">
-      Tran Date is required.
-    </div>
-  </div>
-
-  <div>
-    <label for="tranNo">Tran No:*</label>
-    <select id="tranNo" formControlName="tranNo" required>
-      <option value="" disabled>Select Tran No</option>
-      <option *ngFor="let no of tranNoOptions" [value]="no">{{ no }}</option>
-    </select>
-    <div *ngIf="sabhasadVarganiForm.get('tranNo')?.invalid && sabhasadVarganiForm.get('tranNo')?.touched">
-      Tran No is required.
-    </div>
-  </div>
-
-  <div>
-    <label for="varganiType">Vargani Type:*</label>
-    <select id="varganiType" formControlName="varganiType" required>
-      <option value="" disabled>Select Type</option>
-      <option *ngFor="let type of varganiTypes" [value]="type">{{ type }}</option>
-    </select>
-    <div *ngIf="sabhasadVarganiForm.get('varganiType')?.invalid && sabhasadVarganiForm.get('varganiType')?.touched">
-      Vargani Type is required.
-    </div>
-  </div>
-
-  <div *ngIf="sabhasadVarganiForm.get('varganiType')?.value === 'monthly'">
-    <label for="months">Number of Months:*</label>
-    <input
-      type="number"
-      id="months"
-      formControlName="months"
-      min="1"
-      [attr.max]="remainingMonths"
-      required
-    />
-    <div *ngIf="sabhasadVarganiForm.get('months')?.invalid && sabhasadVarganiForm.get('months')?.touched">
-      <div *ngIf="sabhasadVarganiForm.get('months')?.errors?.['required']">
-        Number of months is required.
+  <div class="card-body">
+    <form [formGroup]="sabhasadVarganiForm" (ngSubmit)="onSubmit()">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="sabhasadId" class="form-label">{{ 'sabhasadVargani.sabhasadName' | translate }}</label>
+          <select id="sabhasadId" class="form-select" formControlName="sabhasadId" required>
+            <option value="" disabled>{{ 'sabhasadVargani.selectSabhasad' | translate }}</option>
+            <option *ngFor="let option of sabhasadOptions" [value]="option.id">{{ option.name }}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="sabhasadVarganiForm.get('sabhasadId')?.invalid && sabhasadVarganiForm.get('sabhasadId')?.touched">
+            {{ 'sabhasadVargani.required' | translate }}
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="tranDate" class="form-label">{{ 'sabhasadVargani.tranDate' | translate }}</label>
+          <input type="date" id="tranDate" class="form-control" formControlName="tranDate" required />
+          <div class="invalid-feedback" *ngIf="sabhasadVarganiForm.get('tranDate')?.invalid && sabhasadVarganiForm.get('tranDate')?.touched">
+            {{ 'sabhasadVargani.required' | translate }}
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="tranNo" class="form-label">{{ 'sabhasadVargani.tranNo' | translate }}</label>
+          <select id="tranNo" class="form-select" formControlName="tranNo" required>
+            <option value="" disabled>{{ 'sabhasadVargani.selectType' | translate }}</option>
+            <option *ngFor="let no of tranNoOptions" [value]="no">{{ no }}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="sabhasadVarganiForm.get('tranNo')?.invalid && sabhasadVarganiForm.get('tranNo')?.touched">
+            {{ 'sabhasadVargani.required' | translate }}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="varganiType" class="form-label">{{ 'sabhasadVargani.varganiType' | translate }}</label>
+          <select id="varganiType" class="form-select" formControlName="varganiType" required>
+            <option value="" disabled>{{ 'sabhasadVargani.selectType' | translate }}</option>
+            <option *ngFor="let type of varganiTypes" [value]="type">{{ 'sabhasadVargani.' + type | translate }}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="sabhasadVarganiForm.get('varganiType')?.invalid && sabhasadVarganiForm.get('varganiType')?.touched">
+            {{ 'sabhasadVargani.required' | translate }}
+          </div>
+        </div>
+        <div class="col-md-4" *ngIf="sabhasadVarganiForm.get('varganiType')?.value === 'monthly'">
+          <label for="months" class="form-label">{{ 'sabhasadVargani.months' | translate }}</label>
+          <input type="number" id="months" class="form-control" formControlName="months" min="1" [attr.max]="remainingMonths" required />
+          <div class="invalid-feedback" *ngIf="sabhasadVarganiForm.get('months')?.invalid && sabhasadVarganiForm.get('months')?.touched">
+            <div *ngIf="sabhasadVarganiForm.get('months')?.errors?.['required']">
+              {{ 'sabhasadVargani.monthsRequired' | translate }}
+            </div>
+            <div *ngIf="sabhasadVarganiForm.get('months')?.errors?.['max']">
+              {{ 'sabhasadVargani.monthsMax' | translate }}
+            </div>
+            <div *ngIf="sabhasadVarganiForm.get('months')?.errors?.['monthLimit']">
+              {{ 'sabhasadVargani.monthsMax' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="amount" class="form-label">{{ 'sabhasadVargani.amount' | translate }}</label>
+          <input type="number" id="amount" class="form-control" formControlName="amount" [disabled]="sabhasadVarganiForm.get('amount')?.disabled ?? false" step="0.01" />
+          <div class="invalid-feedback" *ngIf="sabhasadVarganiForm.get('amount')?.invalid && sabhasadVarganiForm.get('amount')?.touched">
+            <div *ngIf="sabhasadVarganiForm.get('amount')?.errors?.['required']">
+              {{ 'sabhasadVargani.required' | translate }}
+            </div>
+            <div *ngIf="sabhasadVarganiForm.get('amount')?.errors?.['min']">
+              {{ 'sabhasadVargani.amountMin' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="col-12 text-end">
+          <button type="submit" class="btn btn-primary px-4" [disabled]="sabhasadVarganiForm.invalid">{{ 'sabhasadVargani.submit' | translate }}</button>
+        </div>
       </div>
-      <div *ngIf="sabhasadVarganiForm.get('months')?.errors?.['max']">
-        Number of months cannot exceed {{ remainingMonths }}.
-      </div>
-      <div *ngIf="sabhasadVarganiForm.get('months')?.errors?.['monthLimit']">
-        You can only add {{ remainingMonths }} more month{{ remainingMonths === 1 ? '' : 's' }} for this Sabhasad.
-      </div>
-    </div>
+    </form>
   </div>
-
-  <div>
-    <label for="amount">Amount:*</label>
-    <input type="number" id="amount" formControlName="amount" [disabled]="sabhasadVarganiForm.get('amount')?.disabled ?? false" step="0.01" />
-    <div *ngIf="sabhasadVarganiForm.get('amount')?.invalid && sabhasadVarganiForm.get('amount')?.touched">
-      <div *ngIf="sabhasadVarganiForm.get('amount')?.errors?.['required']">
-        Amount is required.
-      </div>
-      <div *ngIf="sabhasadVarganiForm.get('amount')?.errors?.['min']">
-        Amount must be at least 100.
-      </div>
-    </div>
-  </div>
-
-  <button type="submit" [disabled]="sabhasadVarganiForm.invalid">Submit</button>
-</form>
+</div>

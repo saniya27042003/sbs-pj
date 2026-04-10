@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ApiService, SabhasadOption } from '../api.service';
+import { TranslatePipe } from '../translate.pipe';
 
 @Component({
   selector: 'app-sabhasad-vargani',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './sabhasad-vargani.html',
   styleUrl: './sabhasad-vargani.css',
 })

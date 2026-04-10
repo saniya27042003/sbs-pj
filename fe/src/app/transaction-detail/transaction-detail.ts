@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../api.service';
+import { TranslatePipe } from '../translate.pipe';
 
 @Component({
   selector: 'app-transaction-detail',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './transaction-detail.html',
   styleUrl: './transaction-detail.css',
 })

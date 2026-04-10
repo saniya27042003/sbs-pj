@@ -1,10 +1,27 @@
-<nav>
-  <!-- //<button routerLink="/login">Login</button> -->
-
-  <button routerLink="/sabhasad-master">Sabhasad Master</button>
-  <button routerLink="/sabhasad-vargani">Sabhasad Vargani</button>
-  <button routerLink="/transaction-detail">Transaction Detail</button>
-    <button routerLink="/report">Report</button>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+  <div class="container">
+    <a class="navbar-brand fw-bold" routerLink="/sabhasad-master">Vargani App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" routerLink="/sabhasad-master">{{ 'nav.sabhasadMaster' | translate }}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/sabhasad-vargani">{{ 'nav.sabhasadVargani' | translate }}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/transaction-detail">{{ 'nav.transactionDetail' | translate }}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/report">{{ 'nav.report' | translate }}</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2">
+        <label class="mb-0 text-muted" for="language-select">{{ 'nav.language' | translate }}:</label>
+        <select id="language-select" class="form-select form-select-sm" [value]="translateService.language()" (change)="onLanguageChange($event)">
+          <option value="en">{{ 'nav.english' | translate }}</option>
+          <option value="mr">{{ 'nav.marathi' | translate }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
 </nav>
 
-<router-outlet />
+<div class="container mb-5">
+  <router-outlet />
+</div>

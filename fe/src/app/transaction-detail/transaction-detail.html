@@ -1,39 +1,59 @@
+<div class="row g-4">
+  <div class="col-12">
+    <div class="card page-card shadow-sm">
+      <div class="card-header">
+        <h2 class="mb-0">{{ 'transactionDetail.special' | translate }}</h2>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead>
+              <tr>
+                <th>{{ 'transactionDetail.sabhasadId' | translate }}</th>
+                <th>{{ 'transactionDetail.fullName' | translate }}</th>
+                <th>{{ 'transactionDetail.amount' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of specialData">
+                <td>{{ row.sabhasadid }}</td>
+                <td>{{ row.fullname }}</td>
+                <td>{{ row.amount }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-<h2>Special Vargani</h2>
-<table border="1">
-  <thead>
-    <tr>
-      <th>Sabhasad ID</th>
-      <th>Full Name</th>
-      <th>Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let row of specialData">
-      <td>{{ row.sabhasadid }}</td>
-      <td>{{ row.fullname }}</td>
-      <td>{{ row.amount }}</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2>Monthly Vargani</h2>
-<table border="1">
-  <thead>
-    <tr>
-      <th>Sabhasad ID</th>
-      <th>Full Name</th>
-      <th>Amount</th>
-      <th *ngFor="let month of months">{{ month }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let row of monthlyData">
-      <td>{{ row.sabhasadid }}</td>
-      <td>{{ row.fullname }}</td>
-      <td>{{ row.amount }}</td>
-      <td *ngFor="let month of months">{{ row[month] > 0 ? row[month] : '' }}</td>
-    </tr>
-  </tbody>
-</table>
+  <div class="col-12">
+    <div class="card page-card shadow-sm">
+      <div class="card-header">
+        <h2 class="mb-0">{{ 'transactionDetail.monthly' | translate }}</h2>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead>
+              <tr>
+                <th>{{ 'transactionDetail.sabhasadId' | translate }}</th>
+                <th>{{ 'transactionDetail.fullName' | translate }}</th>
+                <th>{{ 'transactionDetail.amount' | translate }}</th>
+                <th *ngFor="let month of months">{{ month }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of monthlyData">
+                <td>{{ row.sabhasadid }}</td>
+                <td>{{ row.fullname }}</td>
+                <td>{{ row.amount }}</td>
+                <td *ngFor="let month of months">{{ row[month] > 0 ? row[month] : '' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
