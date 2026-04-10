@@ -1,56 +1,68 @@
-<div class="card page-card shadow-sm">
-  <div class="card-header">
-    <h2 class="mb-0">{{ 'sabhasadMaster.title' | translate }}</h2>
-  </div>
-  <div class="card-body">
-    <form [formGroup]="sabhasadForm" (ngSubmit)="onSubmit()">
-      <div class="row g-3">
-        <div class="col-md-4">
-          <label for="firstName" class="form-label">{{ 'sabhasadMaster.firstName' | translate }}</label>
-          <input type="text" id="firstName" class="form-control" formControlName="firstName" required>
-          <div class="invalid-feedback" *ngIf="sabhasadForm.get('firstName')?.invalid && sabhasadForm.get('firstName')?.touched">
+<div class="form-container-main">
+  <div class="form-card slide-up" style="--delay: 1">
+    <div class="section-header">
+      <div class="step-indicator">{{ 'sabhasadMaster.title' | translate }}</div>
+      <h1 class="section-title">{{ 'sabhasadMaster.title' | translate }}</h1>
+      <!-- <p class="section-subtitle">Fill in the sabhasad details to create a new membership record.</p> -->
+    </div>
+
+    <form [formGroup]="sabhasadForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="grid-form">
+        <div class="form-group">
+          <label for="firstName" class="required">{{ 'sabhasadMaster.firstName' | translate }}</label>
+          <input type="text" id="firstName" formControlName="firstName" [class.invalid]="sabhasadForm.get('firstName')?.invalid && sabhasadForm.get('firstName')?.touched" placeholder="Enter first name">
+          <div class="error-message" *ngIf="sabhasadForm.get('firstName')?.invalid && sabhasadForm.get('firstName')?.touched">
             {{ 'sabhasadMaster.firstNameRequired' | translate }}
           </div>
         </div>
-        <div class="col-md-4">
-          <label for="middleName" class="form-label">{{ 'sabhasadMaster.middleName' | translate }}</label>
-          <input type="text" id="middleName" class="form-control" formControlName="middleName">
+
+        <div class="form-group">
+          <label for="middleName" class="required">{{ 'sabhasadMaster.middleName' | translate }}</label>
+          <input type="text" id="middleName" formControlName="middleName" placeholder="Enter middle name">
         </div>
-        <div class="col-md-4">
-          <label for="lastName" class="form-label">{{ 'sabhasadMaster.lastName' | translate }}</label>
-          <input type="text" id="lastName" class="form-control" formControlName="lastName" required>
-          <div class="invalid-feedback" *ngIf="sabhasadForm.get('lastName')?.invalid && sabhasadForm.get('lastName')?.touched">
+
+        <div class="form-group">
+          <label for="lastName" class="required">{{ 'sabhasadMaster.lastName' | translate }}</label>
+          <input type="text" id="lastName" formControlName="lastName" [class.invalid]="sabhasadForm.get('lastName')?.invalid && sabhasadForm.get('lastName')?.touched" placeholder="Enter last name">
+          <div class="error-message" *ngIf="sabhasadForm.get('lastName')?.invalid && sabhasadForm.get('lastName')?.touched">
             {{ 'sabhasadMaster.lastNameRequired' | translate }}
           </div>
         </div>
-        <div class="col-md-6">
-          <label for="contactNo" class="form-label">{{ 'sabhasadMaster.contactNo' | translate }}</label>
-          <input type="tel" id="contactNo" class="form-control" formControlName="contactNo" required>
-          <div class="invalid-feedback" *ngIf="sabhasadForm.get('contactNo')?.invalid && sabhasadForm.get('contactNo')?.touched">
+
+        <div class="form-group">
+          <label for="contactNo" class="required">{{ 'sabhasadMaster.contactNo' | translate }}</label>
+          <input type="tel" id="contactNo" formControlName="contactNo" [class.invalid]="sabhasadForm.get('contactNo')?.invalid && sabhasadForm.get('contactNo')?.touched" placeholder="Enter contact number">
+          <div class="error-message" *ngIf="sabhasadForm.get('contactNo')?.invalid && sabhasadForm.get('contactNo')?.touched">
             {{ 'sabhasadMaster.contactRequired' | translate }}
           </div>
         </div>
-        <div class="col-md-6">
-          <label for="mailId" class="form-label">{{ 'sabhasadMaster.mailId' | translate }}</label>
-          <input type="email" id="mailId" class="form-control" formControlName="mailId">
+
+        <div class="form-group">
+          <label for="mailId">{{ 'sabhasadMaster.mailId' | translate }}</label>
+          <input type="email" id="mailId" formControlName="mailId" placeholder="Enter email address">
         </div>
-        <div class="col-12">
-          <label for="address" class="form-label">{{ 'sabhasadMaster.address' | translate }}</label>
-          <textarea id="address" class="form-control" formControlName="address" rows="3" required></textarea>
-          <div class="invalid-feedback" *ngIf="sabhasadForm.get('address')?.invalid && sabhasadForm.get('address')?.touched">
+
+        <div class="form-group full-width">
+          <label for="address" class="required">{{ 'sabhasadMaster.address' | translate }}</label>
+          <textarea id="address" formControlName="address" rows="4" [class.invalid]="sabhasadForm.get('address')?.invalid && sabhasadForm.get('address')?.touched" placeholder="Enter address"></textarea>
+          <div class="error-message" *ngIf="sabhasadForm.get('address')?.invalid && sabhasadForm.get('address')?.touched">
             {{ 'sabhasadMaster.addressRequired' | translate }}
           </div>
         </div>
-        <div class="col-md-6">
-          <label for="date" class="form-label">{{ 'sabhasadMaster.date' | translate }}</label>
-          <input type="date" id="date" class="form-control" formControlName="date" required>
-          <div class="invalid-feedback" *ngIf="sabhasadForm.get('date')?.invalid && sabhasadForm.get('date')?.touched">
+
+        <div class="form-group">
+          <label for="date" class="required">{{ 'sabhasadMaster.date' | translate }}</label>
+          <input type="date" id="date" formControlName="date" [class.invalid]="sabhasadForm.get('date')?.invalid && sabhasadForm.get('date')?.touched">
+          <div class="error-message" *ngIf="sabhasadForm.get('date')?.invalid && sabhasadForm.get('date')?.touched">
             {{ 'sabhasadMaster.dateRequired' | translate }}
           </div>
         </div>
-        <div class="col-12 text-end">
-          <button type="submit" class="btn btn-primary px-4" [disabled]="sabhasadForm.invalid">{{ 'sabhasadMaster.submit' | translate }}</button>
-        </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" [disabled]="sabhasadForm.invalid">{{ 'sabhasadMaster.submit' | translate }}</button>
       </div>
     </form>
+  </div>
+</div>
   

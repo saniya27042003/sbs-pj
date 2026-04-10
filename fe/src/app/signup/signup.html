@@ -1,0 +1,42 @@
+<div class="form-container-main">
+  <div class="form-card slide-up" style="--delay: 1">
+    <div class="section-header">
+      <div class="step-indicator">Create account</div>
+      <h1 class="section-title">Sign Up</h1>
+      <p class="section-subtitle">Create your Vargani account and continue to Sabhasad Master.</p>
+    </div>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="grid-form">
+        <div class="form-group full-width">
+          <label for="username" class="required">Username</label>
+          <input type="text" id="username" formControlName="username" [class.invalid]="signupForm.get('username')?.invalid && signupForm.get('username')?.touched" placeholder="Choose a username">
+          <div class="error-message" *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched">
+            <span *ngIf="signupForm.get('username')?.errors?.['required']">Username is required.</span>
+            <span *ngIf="signupForm.get('username')?.errors?.['minlength']">Username needs at least 4 characters.</span>
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="password" class="required">Password</label>
+          <input type="password" id="password" formControlName="password" [class.invalid]="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" placeholder="Create a password">
+          <div class="error-message" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+            <span *ngIf="signupForm.get('password')?.errors?.['required']">Password is required.</span>
+            <span *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</span>
+          </div>
+        </div>
+
+        <div class="form-footer full-width">
+          <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="alternate-action">
+      Already have an account? <a routerLink="/login">Login</a>
+    </div>
+
+    <div class="form-note success" *ngIf="successMessage">{{ successMessage }}</div>
+    <div class="form-note error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  </div>
+</div>
