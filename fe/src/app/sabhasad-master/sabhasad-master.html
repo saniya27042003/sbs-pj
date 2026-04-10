@@ -1,1 +1,50 @@
+<h2>Sabhasad Master</h2>
 
+<form [formGroup]="sabhasadForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:*</label>
+    <input type="text" id="name" formControlName="name" required>
+    <div *ngIf="sabhasadForm.get('name')?.invalid && sabhasadForm.get('name')?.touched">
+      Name is required.
+    </div>
+  </div>
+
+  <!-- <div>
+    <label for="id">ID:*</label>
+    <input type="text" id="id" formControlName="id" required>
+    <div *ngIf="sabhasadForm.get('id')?.invalid && sabhasadForm.get('id')?.touched">
+      ID is required.
+    </div>
+  </div> -->
+
+  <div>
+    <label for="contactNo">Contact No:*</label>
+    <input type="tel" id="contactNo" formControlName="contactNo" required>
+    <div *ngIf="sabhasadForm.get('contactNo')?.invalid && sabhasadForm.get('contactNo')?.touched">
+      Contact No is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="address">Address:*</label>
+    <textarea id="address" formControlName="address" required></textarea>
+    <div *ngIf="sabhasadForm.get('address')?.invalid && sabhasadForm.get('address')?.touched">
+      Address is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="date">Date:*</label>
+    <input type="date" id="date" formControlName="date" required>
+    <div *ngIf="sabhasadForm.get('date')?.invalid && sabhasadForm.get('date')?.touched">
+      Date is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="mailId">Mail ID :</label>
+    <input type="email" id="mailId" formControlName="mailId">
+  </div>
+
+  <button type="submit" [disabled]="sabhasadForm.invalid">Submit</button>
+</form>
