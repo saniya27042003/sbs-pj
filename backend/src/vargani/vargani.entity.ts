@@ -8,6 +8,9 @@ export class Vargani {
   @Column()
   sabhasadId: number;
 
+  @Column({ nullable: true })
+  fullName?: string;
+
   @Column()
   tranDate: Date;
 
@@ -16,4 +19,10 @@ export class Vargani {
 
   @Column()
   varganiType: string;
+
+  @Column({ nullable: true })
+  months?: number;
+
+  @Column('decimal', { precision: 12, scale: 2, nullable: true })
+  amount?: number;
 }

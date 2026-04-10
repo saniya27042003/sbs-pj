@@ -42,5 +42,41 @@
     </div>
   </div>
 
+  <div *ngIf="sabhasadVarganiForm.get('varganiType')?.value === 'monthly'">
+    <label for="months">Number of Months:*</label>
+    <input
+      type="number"
+      id="months"
+      formControlName="months"
+      min="1"
+      [attr.max]="remainingMonths"
+      required
+    />
+    <div *ngIf="sabhasadVarganiForm.get('months')?.invalid && sabhasadVarganiForm.get('months')?.touched">
+      <div *ngIf="sabhasadVarganiForm.get('months')?.errors?.['required']">
+        Number of months is required.
+      </div>
+      <div *ngIf="sabhasadVarganiForm.get('months')?.errors?.['max']">
+        Number of months cannot exceed {{ remainingMonths }}.
+      </div>
+      <div *ngIf="sabhasadVarganiForm.get('months')?.errors?.['monthLimit']">
+        You can only add {{ remainingMonths }} more month{{ remainingMonths === 1 ? '' : 's' }} for this Sabhasad.
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <label for="amount">Amount:*</label>
+    <input type="number" id="amount" formControlName="amount" [disabled]="sabhasadVarganiForm.get('amount')?.disabled ?? false" step="0.01" />
+    <div *ngIf="sabhasadVarganiForm.get('amount')?.invalid && sabhasadVarganiForm.get('amount')?.touched">
+      <div *ngIf="sabhasadVarganiForm.get('amount')?.errors?.['required']">
+        Amount is required.
+      </div>
+      <div *ngIf="sabhasadVarganiForm.get('amount')?.errors?.['min']">
+        Amount must be at least 100.
+      </div>
+    </div>
+  </div>
+
   <button type="submit" [disabled]="sabhasadVarganiForm.invalid">Submit</button>
 </form>

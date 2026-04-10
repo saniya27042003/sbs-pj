@@ -1,1 +1,39 @@
-<p>transaction-detail works!</p>
+
+
+<h2>Special Vargani</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Sabhasad ID</th>
+      <th>Full Name</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of specialData">
+      <td>{{ row.sabhasadid }}</td>
+      <td>{{ row.fullname }}</td>
+      <td>{{ row.amount }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Monthly Vargani</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Sabhasad ID</th>
+      <th>Full Name</th>
+      <th>Amount</th>
+      <th *ngFor="let month of months">{{ month }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of monthlyData">
+      <td>{{ row.sabhasadid }}</td>
+      <td>{{ row.fullname }}</td>
+      <td>{{ row.amount }}</td>
+      <td *ngFor="let month of months">{{ row[month] > 0 ? row[month] : '' }}</td>
+    </tr>
+  </tbody>
+</table>

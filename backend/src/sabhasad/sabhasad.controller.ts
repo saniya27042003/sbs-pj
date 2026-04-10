@@ -8,12 +8,19 @@ export class SabhasadController {
 
   @Post()
   create(@Body() sabhasadData: Partial<Sabhasad>) {
+    sabhasadData.fullName = [sabhasadData.firstName, sabhasadData.middleName, sabhasadData.lastName]
+      .filter(Boolean)
+      .join(' ');
     return this.sabhasadService.create(sabhasadData);
   }
 
   @Get()
-  findAll() {
-    return this.sabhasadService.findAll();
+  async findAll() {
+    const data = await this.sabhasadService.findAll();
+    return data.map((item) => ({
+      ...item,
+      fullName: item.fullName || [item.firstName, item.middleName, item.lastName].filter(Boolean).join(' '),
+    }));
   }
 
   @Get(':id')

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-sabhasad-master',
@@ -12,9 +12,11 @@ import { HttpClient } from '@angular/common/http';
 export class SabhasadMaster {
   sabhasadForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private api: ApiService) {
     this.sabhasadForm = this.fb.group({
-      name: ['', Validators.required],
+      firstName: ['', Validators.required],
+      middleName: [''],
+      lastName: ['', Validators.required],
       contactNo: ['', Validators.required],
       address: ['', Validators.required],
       date: ['', Validators.required],
@@ -25,11 +27,9 @@ export class SabhasadMaster {
   onSubmit() {
     if (this.sabhasadForm.valid) {
       const formData = this.sabhasadForm.value;
-      // Convert date string to Date object if needed, but backend can handle string
-      this.http.post('http://localhost:3000/sabhasad', formData).subscribe({
+      this.api.createSabhasad(formData).subscribe({
         next: (response) => {
           console.log('Data saved successfully', response);
-          // Reset form or show success message
           this.sabhasadForm.reset();
         },
         error: (error) => {

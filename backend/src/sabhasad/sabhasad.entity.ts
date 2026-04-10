@@ -5,8 +5,17 @@ export class Sabhasad {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  name: string;
+  @Column({ nullable: true })
+  firstName?: string;
+
+  @Column({ nullable: true })
+  middleName?: string;
+
+  @Column({ nullable: true })
+  lastName?: string;
+
+  @Column({ nullable: true })
+  fullName?: string;
 
   @Column()
   contactNo: string;

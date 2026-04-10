@@ -2,10 +2,23 @@
 
 <form [formGroup]="sabhasadForm" (ngSubmit)="onSubmit()">
   <div>
-    <label for="name">Name:*</label>
-    <input type="text" id="name" formControlName="name" required>
-    <div *ngIf="sabhasadForm.get('name')?.invalid && sabhasadForm.get('name')?.touched">
-      Name is required.
+    <label for="firstName">First Name:*</label>
+    <input type="text" id="firstName" formControlName="firstName" required>
+    <div *ngIf="sabhasadForm.get('firstName')?.invalid && sabhasadForm.get('firstName')?.touched">
+      First Name is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="middleName">Middle Name:</label>
+    <input type="text" id="middleName" formControlName="middleName">
+  </div>
+
+  <div>
+    <label for="lastName">Last Name:*</label>
+    <input type="text" id="lastName" formControlName="lastName" required>
+    <div *ngIf="sabhasadForm.get('lastName')?.invalid && sabhasadForm.get('lastName')?.touched">
+      Last Name is required.
     </div>
   </div>
 
