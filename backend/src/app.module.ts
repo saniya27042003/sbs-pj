@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SabhasadModule } from './sabhasad/sabhasad.module';
 import { VarganiModule } from './vargani/vargani.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -12,13 +13,14 @@ import { VarganiModule } from './vargani/vargani.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'Pd@65464541', // Change this to your actual password
-      database: 'test',
+      password: 'swikar1637', // Change this to your actual password
+      database: 'sabhasad-info',
       autoLoadEntities: true,
       synchronize: true, // Set to false in production
     }),
     SabhasadModule,
     VarganiModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
