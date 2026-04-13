@@ -13,10 +13,10 @@ import { AuthModule } from './auth/auth.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'swikar1637', // Change this to your actual password
-      database: 'sabhasad-info',
+      password: 'Pd@65464541', 
+      database: 'test',
       autoLoadEntities: true,
-      synchronize: true, // Set to false in production
+      synchronize: true, 
     }),
     SabhasadModule,
     VarganiModule,
